@@ -247,4 +247,4 @@ def trajectory_plot(trajectory, original, reconstructed, rank):
     plt.savefig("trajectories/trajectory_X_%s_%s.pdf" % (rank, trajectory))
     plt.show()
     
-# %%
+
