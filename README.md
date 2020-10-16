@@ -1,1 +1,1 @@
-# NonnegativeMatrixFactorization
+# Nonnegative Matrix Factorization
