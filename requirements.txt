@@ -1,0 +1,13 @@
+# List of Python modules required 
+numpy             
+matplotlib
+scipy
+sklearn
+time
+pandas
+sys
+mp
+os
+tensorflow
+keras
+random
