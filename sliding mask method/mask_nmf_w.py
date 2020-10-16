@@ -18,7 +18,7 @@ np.random.seed(0)
 
 '''Data pre-processing'''
 
-data = pd.io.parsers.read_csv('LD2011_2014.txt', sep=";", index_col=0, header=0, low_memory=False, decimal=',')
+data = pd.io.parsers.read_csv('../data/LD2011_2014.txt', sep=";", index_col=0, header=0, low_memory=False, decimal=',')
 df = data
 df = df.iloc[2*96:, :]
 df = df.iloc[:-1, :]
