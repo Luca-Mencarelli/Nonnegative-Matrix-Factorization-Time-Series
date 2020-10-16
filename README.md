@@ -1,4 +1,4 @@
-# Nonnegative Matrix Factorization
+# Nonnegative Matrix Factorization (NMF) for Time Series
 
 To install requirements:
 
