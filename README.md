@@ -8,3 +8,5 @@ To install requirements:
 pip install -r requirements.txt
 ```
 
+# In the Notebook 'Experiments.ipynb', we can find the code implemented for the paper.
+
