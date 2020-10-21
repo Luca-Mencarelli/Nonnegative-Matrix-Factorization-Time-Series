@@ -14,21 +14,22 @@ np.random.seed(0)
 
 def project_simplex(x):
 
-    n = len(x)
-    xord = -np.sort(-x)
-    sx = np.sum(x)
-    lam = (sx-1.)/n
-    if (lam<=xord[n-1]):
-        return (x-lam)
+    n = np.shape(x)[0]
+    x_sorted = -np.sort(-x)
+    sum_x = np.sum(x)
+    tau = (sum_x-1.)/n
+    if tau <= x_sorted[n-1]:
+        return (x-tau)
     k = n-1
     flag = 0
-    while ((flag==0)and(k>0)):
-        sx -= xord[k]
-        lam = (sx-1.)/k
-        if ((xord[k]<=lam)and(lam<=xord[k-1])):
+    while ((flag == 0) and (k > 0)):
+        sum_x -= x_sorted[k]
+        tau = (sum_x-1.)/k
+        if ((x_sorted[k] <= tau) and (tau <= x_sorted[k-1])):
             flag = 1
         k -= 1
-    return np.fmax(x-lam,0)
+    return np.maximum(x-tau, 0)
+
 
 # %%
 
