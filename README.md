@@ -1,6 +1,6 @@
 # Nonnegative Matrix Factorization (NMF) for Time Series Forecasting
 
-This github repository contains the codes and scripts to generate the results of the numerical experiments reported in [1], where we introduce a novel methodologyto forecast several time series with non-negative and possibly missing entries, based on low-rank decompositions and matrix completion. We refer the interest reader to [1], for the theoretical analysis of the algorithms, referring in particular to statistical guarantees on uniqueness and robustness of the solutions. We implemented accelerated PALM [2] for Masked AMF and accelerated HALS for Masked NNMF [4]. The code is partially based on the code developed by H. Javadi and A. Montanari, see [5], contained in the Python file NMF.py. 
+This github repository contains the codes and scripts to generate the results of the numerical experiments reported in [1], where we introduce a novel methodologyto forecast several time series with non-negative and possibly missing entries, based on low-rank decompositions and matrix completion. We refer the interest reader to [1], for the theoretical analysis of the algorithms, referring in particular to statistical guarantees on uniqueness and robustness of the solutions. We implemented accelerated PALM [2] for Masked AMF and accelerated HALS for Masked NNMF [4]. The code is partially based on the code developed by H. Javadi and A. Montanari, see [5], contained in the Python file 'NMF.py'. 
 
 ## Requirements
 
@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 ## Code
 
-In the Notebook 'Experiments.ipynb', we can find the code implemented for the paper.
+'Experiments.ipynb' is a Python notebook explaining the code implemented .
 
 ## Bibliography
 
