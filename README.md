@@ -6,13 +6,17 @@ This github repository contains the codes and scripts to generate the results of
 
 To install requirements:
 
-```setup
+```
 pip install -r requirements.txt
 ```
 
 ## Code
 
-``Experiments.ipynb`` is a Python notebook explaining the code implemented for daily electricity consumption data-sets of 370 Portuguese customers during the period 2011-2014, see [6].
+``Experiments.ipynb`` is a Python notebook explaining the code implemented for daily electricity consumption data-sets of 370 Portuguese customers during the period 2011-2014, see [6]. In order to obtain the numerical results reported in the directory ``results`` for the real-world and synthetic data-sets contained in the directory ``data``: 
+
+```
+./allrun_main.sh
+```
 
 ## Bibliography
 
