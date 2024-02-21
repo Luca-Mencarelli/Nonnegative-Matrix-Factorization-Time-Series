@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 ## Code
 
-'Experiments.ipynb' is a Python notebook explaining the code implemented .
+``Experiments.ipynb`` is a Python notebook explaining the code implemented .
 
 ## Bibliography
 
