@@ -2,12 +2,9 @@
 numpy             
 matplotlib
 scipy
-sklearn
-time
+scikit-learn
 pandas
-sys
 mp
-os
 tensorflow
 keras
-random
+statsmodels
