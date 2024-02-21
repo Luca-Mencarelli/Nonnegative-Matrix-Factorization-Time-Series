@@ -1,6 +1,6 @@
 # Nonnegative Matrix Factorization (NMF) for Time Series Forecasting
 
-This github repository contains the codes and scripts to generate the results of the numerical experiments reported in [1], where we introduce a novel methodologyto forecast several time series with non-negative and possibly missing entries, based on low-rank decompositions and matrix completion. We refer the interest reader to [1], for the theoretical analysis of the algorithms, referring in particular to statistical guarantees on uniqueness and robustness of the solutions. We implemented accelerated PALM [2] for Masked AMF and accelerated HALS for Masked NNMF [4]. 
+This github repository contains the codes and scripts to generate the results of the numerical experiments reported in [1], where we introduce a novel methodologyto forecast several time series with non-negative and possibly missing entries, based on low-rank decompositions and matrix completion. We refer the interest reader to [1], for the theoretical analysis of the algorithms, referring in particular to statistical guarantees on uniqueness and robustness of the solutions. We implemented accelerated PALM [2] for Masked AMF and accelerated HALS for Masked NNMF [4]. The code is partially based on the code developed by H. Javadi and A. Montanari, see [5], contained in the Python file NMF.py. 
 
 ## Requirements
 
@@ -23,4 +23,6 @@ In the Notebook 'Experiments.ipynb', we can find the code implemented for the pa
 [3] J. Bolte, S. Sabach, and M. Teboulle. Proximal alternating linearized minimization for nonconvex and nonsmooth problems. Mathematical Programming, 146(1–2):459–494, 2014.
 
 [4] N. Gillis and F. Glineur. Accelerated multiplicative updates and hierarchical ALS algorithms for nonnegative matrix factorization. Neural Computation, 24(4):1085–1105, 2012. doi: 10.1162/ NECO\_a\_00256. URL https://doi.org/10.1162/NECO_a_00256.
+
+[5] H. Javadi and A. Montanari. Nonnegative matrix factorization via archetypal analysis. Journal of the American Statistical Association, 115(530):896–907, 2020.
 
