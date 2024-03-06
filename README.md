@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ## Bibliography
 
-[1] Y. De Castro and L. Mencarelli, Time series prediction from partial observations via Nonnegative Matrix Factorization, 2024.
+[1] Y. De Castro and L. Mencarelli, Time series recovery from partial observations via Nonnegative Matrix Factorization, 2024.
 
 [2] A. Trindade. ElectricityLoadDiagrams20112014. UCI Machine Learning Repository, 2015. DOI: https://doi.org/10.24432/C58C86.
 
