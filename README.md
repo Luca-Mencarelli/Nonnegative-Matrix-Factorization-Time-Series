@@ -18,6 +18,15 @@ pip install -r requirements.txt
 ./allrun_main.sh
 ```
 
+In the directory ``nmf4ts-versus-basisFormer``, there are codes and scripts for additional tests to compare our methodology against BasisFormer [7]. To run our algorithm on small electricity datasets just type:
+
+```
+python main_electricity-hour-basis-small.py
+```
+
+and to run the BasisFormer codes for the same datasets, run script ``main_all_datasets.sh`` in directory ``nmf4ts-versus-basisFormer/BasisFormer-main``.
+
+
 ## Bibliography
 
 [1] Y. De Castro and L. Mencarelli, Time series recovery from partial observations via Nonnegative Matrix Factorization, 2024.
@@ -31,4 +40,6 @@ pip install -r requirements.txt
 [5] H. Javadi and A. Montanari. Nonnegative matrix factorization via archetypal analysis. Journal of the American Statistical Association, 115(530):896–907, 2020.
 
 [6] A. Trindade. ElectricityLoadDiagrams20112014. UCI Machine Learning Repository, 2015. DOI: https://doi.org/10.24432/C58C86.
+
+[7] Z. Ni et al. BasisFormer: Attention-based Time Series Forecasting with Learnable and Interpretable Basis. Advances in Neural Information Processing Systems 36 (NeurIPS 2023). URL https://neurips.cc/virtual/2023/poster/69976
 
