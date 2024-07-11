@@ -1,0 +1,435 @@
+INFO:root:Args in experiment:
+INFO:root:Namespace(is_training=True, device=0, num_workers=0, data='custom', root_path='.', data_path='out.csv', features='M', target='OT', freq='h', seq_len=24, label_len=24, pred_len=24, embed='timeF', heads=16, d_model=100, N=10, block_nums=2, bottleneck=2, map_bottleneck=20, train_epochs=100, batch_size=32, patience=3, learning_rate=0.0005, tau=0.07, loss_weight_prediction=1.0, loss_weight_infonce=1.0, loss_weight_smooth=1.0, check_point='checkpoint')
+INFO:root:Basisformer(
+  (coefnet): Coefnet(
+    (layers): ModuleList(
+      (0): BCAB(
+        (cross_attention_basis): channel_AutoCorrelationLayer(
+          (query_projection): Linear(in_features=100, out_features=96, bias=True)
+          (key_projection): Linear(in_features=100, out_features=96, bias=True)
+          (value_projection): Linear(in_features=100, out_features=96, bias=True)
+          (out_projection): Linear(in_features=96, out_features=100, bias=True)
+          (attend): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (conv1_basis): Linear(in_features=100, out_features=400, bias=True)
+        (conv2_basis): Linear(in_features=400, out_features=100, bias=True)
+        (dropout_basis): Dropout(p=0.1, inplace=False)
+        (cross_attention_ts): channel_AutoCorrelationLayer(
+          (query_projection): Linear(in_features=100, out_features=96, bias=True)
+          (key_projection): Linear(in_features=100, out_features=96, bias=True)
+          (value_projection): Linear(in_features=100, out_features=96, bias=True)
+          (out_projection): Linear(in_features=96, out_features=100, bias=True)
+          (attend): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (conv1_ts): Linear(in_features=100, out_features=400, bias=True)
+        (conv2_ts): Linear(in_features=400, out_features=100, bias=True)
+        (dropout_ts): Dropout(p=0.1, inplace=False)
+        (layer_norm11): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm12): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm21): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm22): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+      )
+      (1): BCAB(
+        (cross_attention_basis): channel_AutoCorrelationLayer(
+          (query_projection): Linear(in_features=100, out_features=96, bias=True)
+          (key_projection): Linear(in_features=100, out_features=96, bias=True)
+          (value_projection): Linear(in_features=100, out_features=96, bias=True)
+          (out_projection): Linear(in_features=96, out_features=100, bias=True)
+          (attend): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (conv1_basis): Linear(in_features=100, out_features=400, bias=True)
+        (conv2_basis): Linear(in_features=400, out_features=100, bias=True)
+        (dropout_basis): Dropout(p=0.1, inplace=False)
+        (cross_attention_ts): channel_AutoCorrelationLayer(
+          (query_projection): Linear(in_features=100, out_features=96, bias=True)
+          (key_projection): Linear(in_features=100, out_features=96, bias=True)
+          (value_projection): Linear(in_features=100, out_features=96, bias=True)
+          (out_projection): Linear(in_features=96, out_features=100, bias=True)
+          (attend): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (conv1_ts): Linear(in_features=100, out_features=400, bias=True)
+        (conv2_ts): Linear(in_features=400, out_features=100, bias=True)
+        (dropout_ts): Dropout(p=0.1, inplace=False)
+        (layer_norm11): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm12): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm21): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm22): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+    (last_layer): last_layer(
+      (query_projection): Linear(in_features=100, out_features=96, bias=True)
+      (key_projection): Linear(in_features=100, out_features=96, bias=True)
+    )
+  )
+  (MLP_x): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=24, out_features=12, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=12, out_features=12, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=12, out_features=12, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=12, out_features=16, bias=True)
+    )
+    (skip): Linear(in_features=24, out_features=12, bias=True)
+    (act): ReLU()
+  )
+  (MLP_y): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=24, out_features=12, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=12, out_features=12, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=12, out_features=12, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=12, out_features=16, bias=True)
+    )
+    (skip): Linear(in_features=24, out_features=12, bias=True)
+    (act): ReLU()
+  )
+  (MLP_sx): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=16, out_features=12, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=12, out_features=12, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=12, out_features=12, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=12, out_features=24, bias=True)
+    )
+    (skip): Linear(in_features=16, out_features=12, bias=True)
+    (act): ReLU()
+  )
+  (MLP_sy): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=16, out_features=12, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=12, out_features=12, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=12, out_features=12, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=12, out_features=24, bias=True)
+    )
+    (skip): Linear(in_features=16, out_features=12, bias=True)
+    (act): ReLU()
+  )
+  (project1): Linear(in_features=24, out_features=100, bias=True)
+  (project2): Linear(in_features=24, out_features=100, bias=True)
+  (project3): Linear(in_features=24, out_features=100, bias=True)
+  (project4): Linear(in_features=24, out_features=100, bias=True)
+  (criterion1): MSELoss()
+  (criterion2): L1Loss()
+  (map_MLP): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=1, out_features=20, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=20, out_features=20, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=20, out_features=20, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=20, out_features=480, bias=True)
+    )
+    (skip): Linear(in_features=1, out_features=20, bias=True)
+    (act): ReLU()
+  )
+)
+INFO:root:[Info] Number of parameters: 528424
+INFO:root:	iters: 3, epoch: 1 | loss: 15490922.0000000
+INFO:root:	iters: 6, epoch: 1 | loss: 14236149.0000000
+INFO:root:	iters: 9, epoch: 1 | loss: 14466663.0000000
+INFO:root:	iters: 12, epoch: 1 | loss: 13758227.0000000
+INFO:root:	iters: 15, epoch: 1 | loss: 13399412.0000000
+INFO:root:	iters: 18, epoch: 1 | loss: 13151982.0000000
+INFO:root:Epoch: 1 cost time: 30.98472785949707
+INFO:root:loss_pred:14151222.94736842
+INFO:root:loss entropy:14.167760347065173
+INFO:root:loss smooth:0.2753096348360965
+INFO:root:Epoch: 1 | Train Loss: 14151237.2631579 Vali Loss: 12025066.0000000 Test Loss: 11330841.0000000
+INFO:root:	iters: 3, epoch: 2 | loss: 12915716.0000000
+INFO:root:	iters: 6, epoch: 2 | loss: 12462095.0000000
+INFO:root:	iters: 9, epoch: 2 | loss: 11706948.0000000
+INFO:root:	iters: 12, epoch: 2 | loss: 12025456.0000000
+INFO:root:	iters: 15, epoch: 2 | loss: 11603553.0000000
+INFO:root:	iters: 18, epoch: 2 | loss: 9634104.0000000
+INFO:root:Epoch: 2 cost time: 59.13534593582153
+INFO:root:loss_pred:11776145.789473685
+INFO:root:loss entropy:22.290841755114105
+INFO:root:loss smooth:0.29151204385255514
+INFO:root:Epoch: 2 | Train Loss: 11776168.0526316 Vali Loss: 9828818.0000000 Test Loss: 9256574.0000000
+INFO:root:	iters: 3, epoch: 3 | loss: 10132969.0000000
+INFO:root:	iters: 6, epoch: 3 | loss: 9957736.0000000
+INFO:root:	iters: 9, epoch: 3 | loss: 8941459.0000000
+INFO:root:	iters: 12, epoch: 3 | loss: 8064204.0000000
+INFO:root:	iters: 15, epoch: 3 | loss: 7973161.5000000
+INFO:root:	iters: 18, epoch: 3 | loss: 9127935.0000000
+INFO:root:Epoch: 3 cost time: 57.65785002708435
+INFO:root:loss_pred:9241535.02631579
+INFO:root:loss entropy:24.655542474043997
+INFO:root:loss smooth:0.2911178751995689
+INFO:root:Epoch: 3 | Train Loss: 9241559.8947368 Vali Loss: 7174345.0000000 Test Loss: 6960569.5000000
+INFO:root:	iters: 3, epoch: 4 | loss: 7407918.0000000
+INFO:root:	iters: 6, epoch: 4 | loss: 7152860.0000000
+INFO:root:	iters: 9, epoch: 4 | loss: 6722560.5000000
+INFO:root:	iters: 12, epoch: 4 | loss: 5626606.0000000
+INFO:root:	iters: 15, epoch: 4 | loss: 5416076.0000000
+INFO:root:	iters: 18, epoch: 4 | loss: 6143081.0000000
+INFO:root:Epoch: 4 cost time: 56.23397779464722
+INFO:root:loss_pred:6560517.52631579
+INFO:root:loss entropy:25.57318757709704
+INFO:root:loss smooth:0.2902675396517703
+INFO:root:Epoch: 4 | Train Loss: 6560543.6052632 Vali Loss: 4831873.0000000 Test Loss: 4819598.0000000
+INFO:root:	iters: 3, epoch: 5 | loss: 4944619.5000000
+INFO:root:	iters: 6, epoch: 5 | loss: 5193044.0000000
+INFO:root:	iters: 9, epoch: 5 | loss: 4662973.0000000
+INFO:root:	iters: 12, epoch: 5 | loss: 5716260.0000000
+INFO:root:	iters: 15, epoch: 5 | loss: 3886132.0000000
+INFO:root:	iters: 18, epoch: 5 | loss: 4515649.0000000
+INFO:root:Epoch: 5 cost time: 57.910654067993164
+INFO:root:loss_pred:4477112.434210527
+INFO:root:loss entropy:25.96894726000334
+INFO:root:loss smooth:0.28776185449800995
+INFO:root:Epoch: 5 | Train Loss: 4477138.8552632 Vali Loss: 3408708.5000000 Test Loss: 3379670.5000000
+INFO:root:	iters: 3, epoch: 6 | loss: 5128742.0000000
+INFO:root:	iters: 6, epoch: 6 | loss: 3700362.2500000
+INFO:root:	iters: 9, epoch: 6 | loss: 2657927.7500000
+INFO:root:	iters: 12, epoch: 6 | loss: 2878467.0000000
+INFO:root:	iters: 15, epoch: 6 | loss: 2547835.2500000
+INFO:root:	iters: 18, epoch: 6 | loss: 2188257.0000000
+INFO:root:Epoch: 6 cost time: 48.984419107437134
+INFO:root:loss_pred:3114795.736842105
+INFO:root:loss entropy:25.5122810162996
+INFO:root:loss smooth:0.28664711274598775
+INFO:root:Epoch: 6 | Train Loss: 3114821.5131579 Vali Loss: 2320972.7500000 Test Loss: 2462884.7500000
+INFO:root:	iters: 3, epoch: 7 | loss: 3599423.5000000
+INFO:root:	iters: 6, epoch: 7 | loss: 2242939.7500000
+INFO:root:	iters: 9, epoch: 7 | loss: 2003069.7500000
+INFO:root:	iters: 12, epoch: 7 | loss: 2376995.5000000
+INFO:root:	iters: 15, epoch: 7 | loss: 1847429.2500000
+INFO:root:	iters: 18, epoch: 7 | loss: 2057812.8750000
+INFO:root:Epoch: 7 cost time: 43.131635904312134
+INFO:root:loss_pred:2290934.6842105263
+INFO:root:loss entropy:23.615264892578125
+INFO:root:loss smooth:0.28474927105401693
+INFO:root:Epoch: 7 | Train Loss: 2290958.5394737 Vali Loss: 1806710.7500000 Test Loss: 1980260.7500000
+INFO:root:	iters: 3, epoch: 8 | loss: 1879077.7500000
+INFO:root:	iters: 6, epoch: 8 | loss: 1750030.2500000
+INFO:root:	iters: 9, epoch: 8 | loss: 1550537.0000000
+INFO:root:	iters: 12, epoch: 8 | loss: 2223176.0000000
+INFO:root:	iters: 15, epoch: 8 | loss: 1481412.3750000
+INFO:root:	iters: 18, epoch: 8 | loss: 2522290.0000000
+INFO:root:Epoch: 8 cost time: 44.439899921417236
+INFO:root:loss_pred:1919571.9144736843
+INFO:root:loss entropy:21.147574374550267
+INFO:root:loss smooth:0.28317839377804804
+INFO:root:Epoch: 8 | Train Loss: 1919593.2960526 Vali Loss: 1692722.7500000 Test Loss: 1797817.3750000
+INFO:root:	iters: 3, epoch: 9 | loss: 1546059.2500000
+INFO:root:	iters: 6, epoch: 9 | loss: 1595806.8750000
+INFO:root:	iters: 9, epoch: 9 | loss: 1665569.0000000
+INFO:root:	iters: 12, epoch: 9 | loss: 2088690.5000000
+INFO:root:	iters: 15, epoch: 9 | loss: 1769533.7500000
+INFO:root:	iters: 18, epoch: 9 | loss: 1800550.0000000
+INFO:root:Epoch: 9 cost time: 44.46842694282532
+INFO:root:loss_pred:1749449.8486842106
+INFO:root:loss entropy:18.371959786666068
+INFO:root:loss smooth:0.2832491288059636
+INFO:root:Epoch: 9 | Train Loss: 1749468.4736842 Vali Loss: 1548988.1250000 Test Loss: 1642511.5000000
+INFO:root:	iters: 3, epoch: 10 | loss: 1575252.6250000
+INFO:root:	iters: 6, epoch: 10 | loss: 1426629.1250000
+INFO:root:	iters: 9, epoch: 10 | loss: 2071130.2500000
+INFO:root:	iters: 12, epoch: 10 | loss: 1887428.0000000
+INFO:root:	iters: 15, epoch: 10 | loss: 1348328.2500000
+INFO:root:	iters: 18, epoch: 10 | loss: 1341137.2500000
+INFO:root:Epoch: 10 cost time: 43.26455998420715
+INFO:root:loss_pred:1621285.1776315789
+INFO:root:loss entropy:16.426155642459268
+INFO:root:loss smooth:0.28262764999741
+INFO:root:Epoch: 10 | Train Loss: 1621301.8486842 Vali Loss: 1503263.2500000 Test Loss: 1610935.3750000
+INFO:root:	iters: 3, epoch: 11 | loss: 1361274.8750000
+INFO:root:	iters: 6, epoch: 11 | loss: 1463751.1250000
+INFO:root:	iters: 9, epoch: 11 | loss: 1376743.6250000
+INFO:root:	iters: 12, epoch: 11 | loss: 1846107.7500000
+INFO:root:	iters: 15, epoch: 11 | loss: 1254556.1250000
+INFO:root:	iters: 18, epoch: 11 | loss: 1314668.5000000
+INFO:root:Epoch: 11 cost time: 42.955596923828125
+INFO:root:loss_pred:1646633.5855263157
+INFO:root:loss entropy:15.021925022727565
+INFO:root:loss smooth:0.28091430193499517
+INFO:root:Epoch: 11 | Train Loss: 1646648.8618421 Vali Loss: 1454096.7500000 Test Loss: 1562795.5000000
+INFO:root:	iters: 3, epoch: 12 | loss: 1273818.0000000
+INFO:root:	iters: 6, epoch: 12 | loss: 2009631.0000000
+INFO:root:	iters: 9, epoch: 12 | loss: 1271666.0000000
+INFO:root:	iters: 12, epoch: 12 | loss: 1316772.8750000
+INFO:root:	iters: 15, epoch: 12 | loss: 1222833.5000000
+INFO:root:	iters: 18, epoch: 12 | loss: 1797349.3750000
+INFO:root:Epoch: 12 cost time: 44.14665699005127
+INFO:root:loss_pred:1587392.0855263157
+INFO:root:loss entropy:13.982618884036416
+INFO:root:loss smooth:0.278707344281046
+INFO:root:Epoch: 12 | Train Loss: 1587406.3092105 Vali Loss: 1428992.8750000 Test Loss: 1493130.7500000
+INFO:root:	iters: 3, epoch: 13 | loss: 2118784.2500000
+INFO:root:	iters: 6, epoch: 13 | loss: 2822706.0000000
+INFO:root:	iters: 9, epoch: 13 | loss: 1299923.0000000
+INFO:root:	iters: 12, epoch: 13 | loss: 1831931.3750000
+INFO:root:	iters: 15, epoch: 13 | loss: 1653547.1250000
+INFO:root:	iters: 18, epoch: 13 | loss: 1688289.6250000
+INFO:root:Epoch: 13 cost time: 44.72930097579956
+INFO:root:loss_pred:1556746.894736842
+INFO:root:loss entropy:12.930539683291787
+INFO:root:loss smooth:0.27994154001537125
+INFO:root:Epoch: 13 | Train Loss: 1556760.0855263 Vali Loss: 1423018.2500000 Test Loss: 1495374.3750000
+INFO:root:	iters: 3, epoch: 14 | loss: 1156847.7500000
+INFO:root:	iters: 6, epoch: 14 | loss: 1487790.6250000
+INFO:root:	iters: 9, epoch: 14 | loss: 1729623.6250000
+INFO:root:	iters: 12, epoch: 14 | loss: 1192029.7500000
+INFO:root:	iters: 15, epoch: 14 | loss: 1298978.6250000
+INFO:root:	iters: 18, epoch: 14 | loss: 1319743.3750000
+INFO:root:Epoch: 14 cost time: 49.54725790023804
+INFO:root:loss_pred:1509751.9539473683
+INFO:root:loss entropy:12.07513824262117
+INFO:root:loss smooth:0.2796055831407246
+INFO:root:Epoch: 14 | Train Loss: 1509764.2828947 Vali Loss: 1431684.6250000 Test Loss: 1477829.2500000
+INFO:root:	iters: 3, epoch: 15 | loss: 1170015.6250000
+INFO:root:	iters: 6, epoch: 15 | loss: 1161980.5000000
+INFO:root:	iters: 9, epoch: 15 | loss: 2209248.5000000
+INFO:root:	iters: 12, epoch: 15 | loss: 1522395.5000000
+INFO:root:	iters: 15, epoch: 15 | loss: 1663459.5000000
+INFO:root:	iters: 18, epoch: 15 | loss: 1406705.6250000
+INFO:root:Epoch: 15 cost time: 44.15307068824768
+INFO:root:loss_pred:1489255.5328947369
+INFO:root:loss entropy:11.624157052291068
+INFO:root:loss smooth:0.2791388285787482
+INFO:root:Epoch: 15 | Train Loss: 1489267.4144737 Vali Loss: 1387354.2500000 Test Loss: 1398644.7500000
+INFO:root:	iters: 3, epoch: 16 | loss: 1202930.8750000
+INFO:root:	iters: 6, epoch: 16 | loss: 1274941.6250000
+INFO:root:	iters: 9, epoch: 16 | loss: 1307711.6250000
+INFO:root:	iters: 12, epoch: 16 | loss: 1346633.0000000
+INFO:root:	iters: 15, epoch: 16 | loss: 2013958.3750000
+INFO:root:	iters: 18, epoch: 16 | loss: 1131840.6250000
+INFO:root:Epoch: 16 cost time: 39.91880488395691
+INFO:root:loss_pred:1472280.4934210526
+INFO:root:loss entropy:11.071257189700479
+INFO:root:loss smooth:0.2776336403269517
+INFO:root:Epoch: 16 | Train Loss: 1472291.8223684 Vali Loss: 1385053.5000000 Test Loss: 1391054.2500000
+INFO:root:	iters: 3, epoch: 17 | loss: 1398224.1250000
+INFO:root:	iters: 6, epoch: 17 | loss: 1621626.2500000
+INFO:root:	iters: 9, epoch: 17 | loss: 1187405.7500000
+INFO:root:	iters: 12, epoch: 17 | loss: 1225581.1250000
+INFO:root:	iters: 15, epoch: 17 | loss: 1177136.8750000
+INFO:root:	iters: 18, epoch: 17 | loss: 1167459.7500000
+INFO:root:Epoch: 17 cost time: 45.046469926834106
+INFO:root:loss_pred:1438039.9671052631
+INFO:root:loss entropy:10.748618075722142
+INFO:root:loss smooth:0.2774656760065179
+INFO:root:Epoch: 17 | Train Loss: 1438050.9736842 Vali Loss: 1343003.7500000 Test Loss: 1374950.2500000
+INFO:root:	iters: 3, epoch: 18 | loss: 1477194.1250000
+INFO:root:	iters: 6, epoch: 18 | loss: 1149039.3750000
+INFO:root:	iters: 9, epoch: 18 | loss: 1229205.1250000
+INFO:root:	iters: 12, epoch: 18 | loss: 2029352.5000000
+INFO:root:	iters: 15, epoch: 18 | loss: 1022976.2500000
+INFO:root:	iters: 18, epoch: 18 | loss: 1934441.0000000
+INFO:root:Epoch: 18 cost time: 43.76840925216675
+INFO:root:loss_pred:1391724.9276315789
+INFO:root:loss entropy:10.241239949276572
+INFO:root:loss smooth:0.2762969151923531
+INFO:root:Epoch: 18 | Train Loss: 1391735.4210526 Vali Loss: 1346275.5000000 Test Loss: 1358555.7500000
+INFO:root:	iters: 3, epoch: 19 | loss: 1063660.5000000
+INFO:root:	iters: 6, epoch: 19 | loss: 1444118.1250000
+INFO:root:	iters: 9, epoch: 19 | loss: 1425866.2500000
+INFO:root:	iters: 12, epoch: 19 | loss: 1546770.3750000
+INFO:root:	iters: 15, epoch: 19 | loss: 1083557.6250000
+INFO:root:	iters: 18, epoch: 19 | loss: 1494640.6250000
+INFO:root:Epoch: 19 cost time: 43.89789795875549
+INFO:root:loss_pred:1394521.917763158
+INFO:root:loss entropy:10.014499413339715
+INFO:root:loss smooth:0.27749240084698323
+INFO:root:Epoch: 19 | Train Loss: 1394532.1677632 Vali Loss: 1341957.5000000 Test Loss: 1344620.7500000
+INFO:root:	iters: 3, epoch: 20 | loss: 1987148.6250000
+INFO:root:	iters: 6, epoch: 20 | loss: 1147864.8750000
+INFO:root:	iters: 9, epoch: 20 | loss: 1314836.3750000
+INFO:root:	iters: 12, epoch: 20 | loss: 1486297.5000000
+INFO:root:	iters: 15, epoch: 20 | loss: 1708724.6250000
+INFO:root:	iters: 18, epoch: 20 | loss: 1016939.4375000
+INFO:root:Epoch: 20 cost time: 45.11064386367798
+INFO:root:loss_pred:1373749.1940789474
+INFO:root:loss entropy:9.717662158765291
+INFO:root:loss smooth:0.27758969758686264
+INFO:root:Epoch: 20 | Train Loss: 1373759.1644737 Vali Loss: 1323744.1250000 Test Loss: 1297180.2500000
+INFO:root:	iters: 3, epoch: 21 | loss: 1635120.1250000
+INFO:root:	iters: 6, epoch: 21 | loss: 1070435.3750000
+INFO:root:	iters: 9, epoch: 21 | loss: 1314094.3750000
+INFO:root:	iters: 12, epoch: 21 | loss: 1123354.7500000
+INFO:root:	iters: 15, epoch: 21 | loss: 1097756.3750000
+INFO:root:	iters: 18, epoch: 21 | loss: 1487387.1250000
+INFO:root:Epoch: 21 cost time: 45.564374923706055
+INFO:root:loss_pred:1319508.5526315789
+INFO:root:loss entropy:9.393853187561035
+INFO:root:loss smooth:0.2764725198871211
+INFO:root:Epoch: 21 | Train Loss: 1319518.1776316 Vali Loss: 1305029.7500000 Test Loss: 1286875.1250000
+INFO:root:	iters: 3, epoch: 22 | loss: 1495841.5000000
+INFO:root:	iters: 6, epoch: 22 | loss: 1352028.5000000
+INFO:root:	iters: 9, epoch: 22 | loss: 1092718.7500000
+INFO:root:	iters: 12, epoch: 22 | loss: 1107219.6250000
+INFO:root:	iters: 15, epoch: 22 | loss: 1146004.1250000
+INFO:root:	iters: 18, epoch: 22 | loss: 1137397.1250000
+INFO:root:Epoch: 22 cost time: 43.587016105651855
+INFO:root:loss_pred:1343050.9605263157
+INFO:root:loss entropy:9.288549021670693
+INFO:root:loss smooth:0.27458668539398595
+INFO:root:Epoch: 22 | Train Loss: 1343060.4967105 Vali Loss: 1307383.0000000 Test Loss: 1276826.7500000
+INFO:root:	iters: 3, epoch: 23 | loss: 1065535.1250000
+INFO:root:	iters: 6, epoch: 23 | loss: 1172964.8750000
+INFO:root:	iters: 9, epoch: 23 | loss: 1492125.3750000
+INFO:root:	iters: 12, epoch: 23 | loss: 1038564.9375000
+INFO:root:	iters: 15, epoch: 23 | loss: 1437131.8750000
+INFO:root:	iters: 18, epoch: 23 | loss: 2169681.2500000
+INFO:root:Epoch: 23 cost time: 42.99980330467224
+INFO:root:loss_pred:1319383.4375
+INFO:root:loss entropy:9.109485927381014
+INFO:root:loss smooth:0.2741417461319974
+INFO:root:Epoch: 23 | Train Loss: 1319392.7828947 Vali Loss: 1273394.5000000 Test Loss: 1259017.1250000
+INFO:root:	iters: 3, epoch: 24 | loss: 1418033.6250000
+INFO:root:	iters: 6, epoch: 24 | loss: 1034034.6875000
+INFO:root:	iters: 9, epoch: 24 | loss: 1013732.3125000
+INFO:root:	iters: 12, epoch: 24 | loss: 1014962.8750000
+INFO:root:	iters: 15, epoch: 24 | loss: 1295230.7500000
+INFO:root:	iters: 18, epoch: 24 | loss: 1397680.6250000
+INFO:root:Epoch: 24 cost time: 44.96687889099121
+INFO:root:loss_pred:1298048.480263158
+INFO:root:loss entropy:8.93100663235313
+INFO:root:loss smooth:0.2739072881246868
+INFO:root:Epoch: 24 | Train Loss: 1298057.6677632 Vali Loss: 1276716.2500000 Test Loss: 1234914.5000000
+INFO:root:	iters: 3, epoch: 25 | loss: 1496984.1250000
+INFO:root:	iters: 6, epoch: 25 | loss: 1000355.0000000
+INFO:root:	iters: 9, epoch: 25 | loss: 1316713.5000000
+INFO:root:	iters: 12, epoch: 25 | loss: 1357912.7500000
+INFO:root:	iters: 15, epoch: 25 | loss: 1720316.8750000
+INFO:root:	iters: 18, epoch: 25 | loss: 1082182.7500000
+INFO:root:Epoch: 25 cost time: 48.25250196456909
+INFO:root:loss_pred:1295329.5493421052
+INFO:root:loss entropy:8.78242015838623
+INFO:root:loss smooth:0.2738755141433917
+INFO:root:Epoch: 25 | Train Loss: 1295338.5888158 Vali Loss: 1301195.3750000 Test Loss: 1239589.8750000
+INFO:root:	iters: 3, epoch: 26 | loss: 1066114.2500000
+INFO:root:	iters: 6, epoch: 26 | loss: 1274269.6250000
+INFO:root:	iters: 9, epoch: 26 | loss: 1545734.3750000
+INFO:root:	iters: 12, epoch: 26 | loss: 1645691.5000000
+INFO:root:	iters: 15, epoch: 26 | loss: 1564148.3750000
+INFO:root:	iters: 18, epoch: 26 | loss: 1019846.1250000
+INFO:root:Epoch: 26 cost time: 46.52526116371155
+INFO:root:loss_pred:1284720.1546052631
+INFO:root:loss entropy:8.626513832493833
+INFO:root:loss smooth:0.2735765874385834
+INFO:root:Epoch: 26 | Train Loss: 1284729.0164474 Vali Loss: 1297017.7500000 Test Loss: 1245163.3750000
+INFO:root:loading model
+INFO:root:total_time:2.903024911880493
+INFO:root:avg_time:0.01717766220047629
+INFO:root:mse:1259017.75, mae:232.80581665039062

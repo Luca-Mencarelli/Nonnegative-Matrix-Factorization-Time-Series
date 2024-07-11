@@ -1,0 +1,189 @@
+INFO:root:Args in experiment:
+INFO:root:Namespace(is_training=True, device=0, num_workers=0, data='custom', root_path='.', data_path='out_electricity_2.csv', features='M', target='OT', freq='h', seq_len=96, label_len=96, pred_len=96, embed='timeF', heads=16, d_model=100, N=10, block_nums=2, bottleneck=2, map_bottleneck=20, train_epochs=100, batch_size=32, patience=3, learning_rate=0.0005, tau=0.07, loss_weight_prediction=1.0, loss_weight_infonce=1.0, loss_weight_smooth=1.0, check_point='checkpoint')
+INFO:root:Basisformer(
+  (coefnet): Coefnet(
+    (layers): ModuleList(
+      (0): BCAB(
+        (cross_attention_basis): channel_AutoCorrelationLayer(
+          (query_projection): Linear(in_features=100, out_features=96, bias=True)
+          (key_projection): Linear(in_features=100, out_features=96, bias=True)
+          (value_projection): Linear(in_features=100, out_features=96, bias=True)
+          (out_projection): Linear(in_features=96, out_features=100, bias=True)
+          (attend): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (conv1_basis): Linear(in_features=100, out_features=400, bias=True)
+        (conv2_basis): Linear(in_features=400, out_features=100, bias=True)
+        (dropout_basis): Dropout(p=0.1, inplace=False)
+        (cross_attention_ts): channel_AutoCorrelationLayer(
+          (query_projection): Linear(in_features=100, out_features=96, bias=True)
+          (key_projection): Linear(in_features=100, out_features=96, bias=True)
+          (value_projection): Linear(in_features=100, out_features=96, bias=True)
+          (out_projection): Linear(in_features=96, out_features=100, bias=True)
+          (attend): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (conv1_ts): Linear(in_features=100, out_features=400, bias=True)
+        (conv2_ts): Linear(in_features=400, out_features=100, bias=True)
+        (dropout_ts): Dropout(p=0.1, inplace=False)
+        (layer_norm11): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm12): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm21): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm22): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+      )
+      (1): BCAB(
+        (cross_attention_basis): channel_AutoCorrelationLayer(
+          (query_projection): Linear(in_features=100, out_features=96, bias=True)
+          (key_projection): Linear(in_features=100, out_features=96, bias=True)
+          (value_projection): Linear(in_features=100, out_features=96, bias=True)
+          (out_projection): Linear(in_features=96, out_features=100, bias=True)
+          (attend): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (conv1_basis): Linear(in_features=100, out_features=400, bias=True)
+        (conv2_basis): Linear(in_features=400, out_features=100, bias=True)
+        (dropout_basis): Dropout(p=0.1, inplace=False)
+        (cross_attention_ts): channel_AutoCorrelationLayer(
+          (query_projection): Linear(in_features=100, out_features=96, bias=True)
+          (key_projection): Linear(in_features=100, out_features=96, bias=True)
+          (value_projection): Linear(in_features=100, out_features=96, bias=True)
+          (out_projection): Linear(in_features=96, out_features=100, bias=True)
+          (attend): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+        (conv1_ts): Linear(in_features=100, out_features=400, bias=True)
+        (conv2_ts): Linear(in_features=400, out_features=100, bias=True)
+        (dropout_ts): Dropout(p=0.1, inplace=False)
+        (layer_norm11): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm12): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm21): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+        (layer_norm22): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+    (last_layer): last_layer(
+      (query_projection): Linear(in_features=100, out_features=96, bias=True)
+      (key_projection): Linear(in_features=100, out_features=96, bias=True)
+    )
+  )
+  (MLP_x): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=96, out_features=48, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=48, out_features=48, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=48, out_features=48, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=48, out_features=96, bias=True)
+    )
+    (skip): Linear(in_features=96, out_features=48, bias=True)
+    (act): ReLU()
+  )
+  (MLP_y): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=96, out_features=48, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=48, out_features=48, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=48, out_features=48, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=48, out_features=96, bias=True)
+    )
+    (skip): Linear(in_features=96, out_features=48, bias=True)
+    (act): ReLU()
+  )
+  (MLP_sx): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=96, out_features=48, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=48, out_features=48, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=48, out_features=48, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=48, out_features=96, bias=True)
+    )
+    (skip): Linear(in_features=96, out_features=48, bias=True)
+    (act): ReLU()
+  )
+  (MLP_sy): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=96, out_features=48, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=48, out_features=48, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=48, out_features=48, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=48, out_features=96, bias=True)
+    )
+    (skip): Linear(in_features=96, out_features=48, bias=True)
+    (act): ReLU()
+  )
+  (project1): Linear(in_features=96, out_features=100, bias=True)
+  (project2): Linear(in_features=96, out_features=100, bias=True)
+  (project3): Linear(in_features=96, out_features=100, bias=True)
+  (project4): Linear(in_features=96, out_features=100, bias=True)
+  (criterion1): MSELoss()
+  (criterion2): L1Loss()
+  (map_MLP): MLP_bottle(
+    (linear1): Sequential(
+      (0): Linear(in_features=1, out_features=20, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=20, out_features=20, bias=True)
+    )
+    (linear2): Sequential(
+      (0): Linear(in_features=20, out_features=20, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=20, out_features=1920, bias=True)
+    )
+    (skip): Linear(in_features=1, out_features=20, bias=True)
+    (act): ReLU()
+  )
+)
+INFO:root:[Info] Number of parameters: 660360
+INFO:root:	iters: 3, epoch: 1 | loss: 18378264.0000000
+INFO:root:	iters: 6, epoch: 1 | loss: 17618488.0000000
+INFO:root:	iters: 9, epoch: 1 | loss: 16895096.0000000
+INFO:root:	iters: 12, epoch: 1 | loss: 15644332.0000000
+INFO:root:	iters: 15, epoch: 1 | loss: 14310812.0000000
+INFO:root:Epoch: 1 cost time: 26.571545839309692
+INFO:root:loss_pred:16779389.866666667
+INFO:root:loss entropy:12.918029308319092
+INFO:root:loss smooth:0.14329155286153158
+INFO:root:Epoch: 1 | Train Loss: 16779402.8000000 Vali Loss: nan Test Loss: 14029995.0000000
+INFO:root:	iters: 3, epoch: 2 | loss: 12711368.0000000
+INFO:root:	iters: 6, epoch: 2 | loss: 12629404.0000000
+INFO:root:	iters: 9, epoch: 2 | loss: 11084780.0000000
+INFO:root:	iters: 12, epoch: 2 | loss: 9563211.0000000
+INFO:root:	iters: 15, epoch: 2 | loss: 8204462.0000000
+INFO:root:Epoch: 2 cost time: 49.85870599746704
+INFO:root:loss_pred:11035530.4
+INFO:root:loss entropy:20.323039754231772
+INFO:root:loss smooth:0.1438823421796163
+INFO:root:Epoch: 2 | Train Loss: 11035550.7333333 Vali Loss: nan Test Loss: 7665631.5000000
+INFO:root:	iters: 3, epoch: 3 | loss: 6602008.0000000
+INFO:root:	iters: 6, epoch: 3 | loss: 6320378.5000000
+INFO:root:	iters: 9, epoch: 3 | loss: 5450486.5000000
+INFO:root:	iters: 12, epoch: 3 | loss: 4346690.0000000
+INFO:root:	iters: 15, epoch: 3 | loss: 3938884.0000000
+INFO:root:Epoch: 3 cost time: 50.75657510757446
+INFO:root:loss_pred:5535296.95
+INFO:root:loss entropy:17.93452631632487
+INFO:root:loss smooth:0.14783397217591604
+INFO:root:Epoch: 3 | Train Loss: 5535314.9500000 Vali Loss: nan Test Loss: 3427320.2500000
+INFO:root:	iters: 3, epoch: 4 | loss: 3385314.0000000
+INFO:root:	iters: 6, epoch: 4 | loss: 2968915.7500000
+INFO:root:	iters: 9, epoch: 4 | loss: 2759685.2500000
+INFO:root:	iters: 12, epoch: 4 | loss: 2478671.7500000
+INFO:root:	iters: 15, epoch: 4 | loss: 2417355.0000000
+INFO:root:Epoch: 4 cost time: 60.75072002410889
+INFO:root:loss_pred:2896059.95
+INFO:root:loss entropy:15.30328795115153
+INFO:root:loss smooth:0.1494807223478953
+INFO:root:Epoch: 4 | Train Loss: 2896075.5333333 Vali Loss: nan Test Loss: 2083127.3750000
+INFO:root:loading model
+INFO:root:total_time:1.7059800624847412
+INFO:root:avg_time:0.01758742332458496
+INFO:root:mse:14029997.0, mae:564.1298217773438
