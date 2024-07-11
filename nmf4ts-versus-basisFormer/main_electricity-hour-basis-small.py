@@ -42,7 +42,7 @@ for i in range(10):
 
     # %%
 
-    periods_to_forecast = 24
+    periods_to_forecast = 96
 
     X_original = df.transpose().values
 
